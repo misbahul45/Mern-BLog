@@ -10,13 +10,13 @@ const Header = () => {
     const [showNavbar,setShowNavbar]=React.useState(false)
   return (
     <>
-        <header className='dark:bg-slate-800 w-full h-16 flex items-center justify-around sticky top-0 left-0'>
+        <header className='dark:bg-slate-800 w-full h-16 flex items-center justify-around sticky top-0 left-0 backdrop-blur-md z-50'>
             <Logo />
             <SearchForm />
             <Navbar />
             <HeaderMenu setShowNavbar={setShowNavbar} />
+            <NavbarMobile showNavbar={showNavbar} />
         </header>
-        <NavbarMobile showNavbar={showNavbar} />
     </>
   )
 }

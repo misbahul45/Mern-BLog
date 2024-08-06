@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import React from "react"
-import { AiOutlineMenu, AiOutlineMoon, AiOutlineSun } from "react-icons/ai"
+import { AiOutlineMenu } from "react-icons/ai"
+import DarkMode from "./DarkMode"
 
 interface HeaderMenuProps{
     setShowNavbar:React.Dispatch<React.SetStateAction<boolean>>
@@ -8,26 +9,24 @@ interface HeaderMenuProps{
 const HeaderMenu=({setShowNavbar}:HeaderMenuProps)=>{
     const [isdarkMode, setIsDarkMode]=React.useState(false)
     const isLogin=false
-    const handleDarkMode=()=>{
+
+    const handleDarkMode=React.useCallback(()=>{
         setIsDarkMode(!isdarkMode)
         document.body.classList.toggle('dark')
-    }
+    },[isdarkMode])
+
     return(
        <div className='flex gap-4 items-center'>
-            <button onClick={handleDarkMode} className={`lg:block hidden p-2 rounded-full shadow-md shadow-slate-500/60 border border-slate-900 dark:border-slate-400`}>
-                {isdarkMode?
-                    <AiOutlineMoon size={20} className='text-slate-100' />
-                    :
-                    <AiOutlineSun size={20} className='text-yellow-500' />
-                }
-            </button>
+            <DarkMode  isdarkMode={isdarkMode} onClick={handleDarkMode} />
             {isLogin?
-                <></>
+                <button className="px-4 py-1.5 font-semibold rounded bg-red-600 text-slate-100 hover:bg-red-700">
+                    Logout
+                </button>
                 :
                 <Link to='/sign-in'>
                     <div className="h-[2.4rem] hidden lg:block w-full rounded bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 p-[0.2rem] shadow-md shadow-slate-900/40 dark:shadow-slate-400/40">
                         <div className={`flex h-full w-full items-center justify-center bg-white dark:bg-slate-900 rounded`}>
-                            <Link className="lg:text-md text-sm font-black text-black dark:text-white px-4" to='/sign-in'>Sign In</Link>
+                            <span className="lg:text-md text-sm font-black text-black dark:text-white px-4">Sign In</span>
                         </div>
                     </div>
                 </Link>
