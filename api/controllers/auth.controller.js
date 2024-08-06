@@ -1,7 +1,8 @@
 const { hashPassword } = require("../utils/bcryptConfig")
+const errorHandler = require("../utils/error")
 const db = require("../utils/prisma")
 
-const signUpController=async(req,res)=>{
+const signUpController=async(req,res, next)=>{
     const data=req.body
     try {
         const hashedPassword=await hashPassword(data.password)
@@ -11,10 +12,9 @@ const signUpController=async(req,res)=>{
                 password:hashedPassword
             }
         })
-        return res.json({ success:true, message:"Success create user" })
+        return res.json({ success:true, message:"Success create user with name "+newUser.username })
     } catch (error) {
-        console.log(error)
-        return res.status(400).json({ success:false,message:"username or email has been used" })
+       next(errorHandler(400, "username or email has been used"))
     }
 }
 

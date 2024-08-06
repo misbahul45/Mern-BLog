@@ -1,7 +1,9 @@
+const errorHandler = require("../utils/error");
+
 const signupValidation=(req,res,next)=>{
     const { username, email, password }=req.body;
     if(!username || !email || ! password || username==='' || email==='' || password===''){
-        return res.status(400).json({ message:"All fields all required" })
+        return next(errorHandler(400, "username, email and password are required"))
     }
     next()
 }
