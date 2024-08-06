@@ -8,4 +8,12 @@ const signupValidation=(req,res,next)=>{
     next()
 }
 
-module.exports={ signupValidation }
+const signinValidation=(req,res,next)=>{
+    const { data, password }=req.body;
+    if(!data || ! password || data==='' || password===''){
+        return next(errorHandler(400, "data and password are required"))
+    }
+    next()
+}
+
+module.exports={ signupValidation, signinValidation }

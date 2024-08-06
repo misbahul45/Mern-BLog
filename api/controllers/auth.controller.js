@@ -1,6 +1,7 @@
-const { hashPassword } = require("../utils/bcryptConfig")
+const { hashPassword, checkPassword } = require("../utils/bcryptConfig")
 const errorHandler = require("../utils/error")
 const db = require("../utils/prisma")
+const jwt=require('jsonwebtoken')
 
 const signUpController=async(req,res, next)=>{
     const data=req.body
@@ -18,4 +19,39 @@ const signUpController=async(req,res, next)=>{
     }
 }
 
-module.exports={ signUpController }
+
+const signInController=async(req,res, next)=>{
+    const { data, password }=req.body
+    try {
+        const findUser=await db.user.findFirst({
+            where:{
+                OR:[
+                    { username:data },
+                    { email:data }
+                ]
+            
+            }
+        })
+
+        if(!findUser){
+            return next(errorHandler(400, "user not found"))
+        }
+        const isMatch=checkPassword(password, findUser.password)
+
+        if(!isMatch){
+            return next(errorHandler(400, "wrong password"))
+        }
+        const token=jwt.sign(
+            { id:findUser.id },
+            process.env.JWT_SECRET,
+        )
+        const { password:pass, ...rest }=findUser
+        return res.cookie("token", token, {
+            httpOnly:true
+        }).json({ success:true, user:rest })
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports={ signUpController, signInController }
