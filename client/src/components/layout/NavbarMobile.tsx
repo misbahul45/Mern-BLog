@@ -1,6 +1,8 @@
 import { Link, useLocation } from "@tanstack/react-router"
 import React from "react"
 import { AiOutlineMoon, AiOutlineSun } from "react-icons/ai"
+import { useSelector } from "react-redux"
+import { RootState } from "../../redux/store"
 
 interface NavbarMobileProps{
     showNavbar:boolean
@@ -8,9 +10,8 @@ interface NavbarMobileProps{
 
 const NavbarMobile=({showNavbar}:NavbarMobileProps)=>{
     const pathName=useLocation().pathname
-
     const [isdarkMode, setIsDarkMode]=React.useState(false)
-    const isLogin=false
+    const { currentUser }=useSelector((state:RootState)=>state.user)
     const handleDarkMode=()=>{
         setIsDarkMode(!isdarkMode)
         document.body.classList.toggle('dark')
@@ -35,11 +36,11 @@ const NavbarMobile=({showNavbar}:NavbarMobileProps)=>{
                         </div>
                     }
                 </button>
-                {isLogin?
-                    <></>
+                {currentUser?
+                    <button className="px-6 py-2 rounded-md bg-red-600 text-slate-100 active:opacity-85">Sign out</button>
                     :
                     <>
-                        <Link to='/sign-in' className='bg-gradient-to-r from-blue-600 dark:from-slate-600 to-cyan-500 dark:to-gray-900 px-4 py-2 rounded-full shadow-md shadow-slate-500/60 border border-slate-900 dark:border-slate-400 text-slate-100'>Sign In</Link>
+                        <Link to='/sign-in' className='bg-gradient-to-r from-blue-600 dark:from-slate-600 to-cyan-500 dark:to-gray-900 px-8 py-2 rounded-full shadow-md shadow-slate-500/60 border border-slate-900 dark:border-slate-400 text-slate-100'>Sign In</Link>
                     </>
                 }
             </div>

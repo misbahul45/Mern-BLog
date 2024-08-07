@@ -1,11 +1,19 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, Navigate } from '@tanstack/react-router'
 import FormSignin from '../../components/auth/FormSignin'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 export const Route = createFileRoute('/_auth/sign-in')({
   component:SignInPage
 })
 
 
 function SignInPage() {
+  const { currentUser }=useSelector((state:RootState)=>state.user)
+  if(currentUser){
+    return Navigate({
+      to:'/'
+    })
+  }
   return(
     <section className='w-full min-h-[calc(100vh-4rem)] flex lg:flex-row flex-col items-center justify-center gap-8 xl:px-12 lg:px-8 md:px-6 sm:px-4 px-2 py-4'>
         <div>

@@ -2,13 +2,15 @@ import { Link } from "@tanstack/react-router"
 import React from "react"
 import { AiOutlineMenu } from "react-icons/ai"
 import DarkMode from "./DarkMode"
+import { useSelector } from "react-redux"
+import { RootState } from "../../redux/store"
 
 interface HeaderMenuProps{
     setShowNavbar:React.Dispatch<React.SetStateAction<boolean>>
 }
 const HeaderMenu=({setShowNavbar}:HeaderMenuProps)=>{
     const [isdarkMode, setIsDarkMode]=React.useState(false)
-    const isLogin=false
+    const { currentUser }=useSelector((state:RootState)=>state.user)
 
     const handleDarkMode=React.useCallback(()=>{
         setIsDarkMode(!isdarkMode)
@@ -18,7 +20,7 @@ const HeaderMenu=({setShowNavbar}:HeaderMenuProps)=>{
     return(
        <div className='flex gap-4 items-center'>
             <DarkMode  isdarkMode={isdarkMode} onClick={handleDarkMode} />
-            {isLogin?
+            {currentUser?
                 <button className="px-4 py-1.5 font-semibold rounded bg-red-600 text-slate-100 hover:bg-red-700">
                     Logout
                 </button>
