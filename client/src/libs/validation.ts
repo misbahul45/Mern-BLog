@@ -4,3 +4,8 @@ export const ValidationSignUp=z.object({
     email:z.string({ message: "Email is required"}).email("email invalid"),
     password:z.string({ message: "Password is required" }).min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character")
 })
+
+export const ValidationSignIn=z.object({
+    data:z.string({ message: "Username or email is required"}).min(3, "Username or email min 3 character"),
+    password:z.string({ message: "Password is required" }).min(8).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character")
+})

@@ -36,10 +36,10 @@ const signInController=async(req,res, next)=>{
         if(!findUser){
             return next(errorHandler(400, "user not found"))
         }
-        const isMatch=checkPassword(password, findUser.password)
-
+        const isMatch=await checkPassword(password, findUser.password)
+    
         if(!isMatch){
-            return next(errorHandler(400, "wrong password"))
+            return next(errorHandler(400, "invalid password user"))
         }
         const token=jwt.sign(
             { id:findUser.id },

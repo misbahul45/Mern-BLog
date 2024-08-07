@@ -17,7 +17,7 @@ const NavbarMobile=({showNavbar}:NavbarMobileProps)=>{
     }
     if(!showNavbar) return null
     return(
-        <nav className='animate-show-mobile-nav lg:hidden flex flex-col w-full absolute top-16 left-0 bg-slate-200 dark:bg-slate-800 border-b-2 border-slate-400 dark:border-slate-500 rounded-b-xl font-semibold z-50'>
+        <nav className='animate-show-mobile-nav lg:hidden flex flex-col w-full absolute top-16 left-0 bg-slate-50 dark:bg-slate-800 border-b-2 border-slate-400 dark:border-slate-500 rounded-b-xl font-semibold z-50'>
             <Link className={`${pathName==="/"?"bg-slate-200 dark:bg-slate-700":""} py-2 text-center hover:bg-slate-200 hover:text-slate-950 dark:hover:bg-slate-700 dark:hover:text-white dark:text-slate-300`} to='/'>Home</Link>
             <Link className={`${pathName=="/about"?"bg-slate-200 dark:bg-slate-700":""} py-2 text-center hover:bg-slate-200 hover:text-slate-950 dark:hover:bg-slate-700 dark:hover:text-white dark:text-slate-300`} to='/about'>About</Link>
             <Link className={`${pathName=="/projects"?"bg-slate-200 dark:bg-slate-700":""} py-2 text-center hover:bg-slate-200 hover:text-slate-950 dark:hover:bg-slate-700 dark:hover:text-white dark:text-slate-300`} to='/projects'>Projects</Link>
