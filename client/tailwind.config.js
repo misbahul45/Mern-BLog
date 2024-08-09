@@ -27,11 +27,20 @@ export default {
           "100%": {
             transform: "translateX(0)",
           }
+        },
+        'show-profile-menu': {
+          '0%': {
+            transform: 'scale(0)',
+          },
+          '100%': {
+            transform: 'scale(1)',
+          }
         }
       },
       animation: {
         'show-mobile-nav': 'show-mobile-nav 0.5s linear',
-        'show-notif': 'show-notif 0.5s linear'
+        'show-notif': 'show-notif 0.5s linear',
+        'show-profile-menu': 'show-profile-menu 0.5s linear'
       }
     }
   },

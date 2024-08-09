@@ -17,7 +17,7 @@ function SignUpPage() {
         </div>
         <div className="w-full">
           <FormSignup />
-          <p className='text-center mt-4 dark:text-slate-100'>Already have an account? <Link to="/sign-in" className='text-green-500'>Sign In</Link></p>
+          <p className='text-center dark:text-slate-100'>Already have an account? <Link to="/sign-in" className='text-green-500'>Sign In</Link></p>
         </div>
     </section>
   )

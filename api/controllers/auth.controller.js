@@ -54,4 +54,46 @@ const signInController=async(req,res, next)=>{
     }
 }
 
-module.exports={ signUpController, signInController }
+const authByGoogleController=async(req, res, next)=>{
+    const { email, username, avatar }=req.body
+    try {
+        const findUser=await db.user.findFirst({
+            where:{
+                OR:[{ username },{ email }]
+            }
+        })
+        if(!findUser){
+            //sign up
+            const createUser=await db.user.create({
+                data:{
+                    username,
+                    email,
+                    avatar
+                }
+            })
+            const tokenSignUp=jwt.sign(
+                { id:createUser.id },
+                process.env.JWT_SECRET,
+            )
+            return res.cookie("token", tokenSignUp, {
+                httpOnly:true
+            }).json({ success:true, user:createUser })
+        }
+
+        //sign in
+        const token=jwt.sign(
+            { id:findUser.id },
+            process.env.JWT_SECRET,
+        )
+        const { password, ...rest }=findUser
+        return res.cookie("token", token, {
+            httpOnly:true
+        }).json({ success:true, user:rest })
+
+    } catch (error) {
+        next(error)   
+    }
+
+}
+
+module.exports={ signUpController, signInController, authByGoogleController }

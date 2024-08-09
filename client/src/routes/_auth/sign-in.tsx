@@ -1,19 +1,12 @@
-import { createFileRoute, Link, Navigate } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import FormSignin from '../../components/auth/FormSignin'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
 export const Route = createFileRoute('/_auth/sign-in')({
   component:SignInPage
 })
 
 
 function SignInPage() {
-  const { currentUser }=useSelector((state:RootState)=>state.user)
-  if(currentUser){
-    return Navigate({
-      to:'/'
-    })
-  }
+
   return(
     <section className='w-full min-h-[calc(100vh-4rem)] flex lg:flex-row flex-col items-center justify-center gap-8 xl:px-12 lg:px-8 md:px-6 sm:px-4 px-2 py-4'>
         <div>
@@ -26,7 +19,7 @@ function SignInPage() {
         <div className="w-full">
           <h1 className='text-center dark:text-slate-100 mb-8 lg:text-3xl md:text-2xl text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-700 via-blue-700 to-pink-700'>Sign In User</h1>
           <FormSignin />
-          <p className='text-center mt-4 dark:text-slate-100'>Don&#39;t have an account? <Link to="/sign-up" className='text-blue-500'>Sign Up</Link></p>
+          <p className='text-center dark:text-slate-100'>Don&#39;t have an account? <Link to="/sign-up" className='text-blue-500'>Sign Up</Link></p>
         </div>
     </section>
   )

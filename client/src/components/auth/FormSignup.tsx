@@ -10,6 +10,7 @@ import ShowNotif from "./ShowNotif"
 import Loader from "../ui/Loader"
 import { sleep } from "../../libs/utils"
 import AuthInformation from "./AuthInformation"
+import Oauth from "./Oauth"
 
 const FormSignup = () => {
   const navigate=useNavigate()
@@ -74,11 +75,11 @@ const FormSignup = () => {
       <form onSubmit={form.handleSubmit(handleSignup)} className='w-full max-w-sm mx-auto'>
         <div className="flex flex-col gap-2">
           <label className="dark:text-slate-100 font-semibold" htmlFor="username">Your username</label>
-          <input type="text" id='username' placeholder='username' {...form.register('username')} className='w-full border-2 border-slate-500 rounded px-2 py-1' />  
+          <input type="text" id='username' placeholder='username' {...form.register('username')} className='w-full border-2 border-slate-500 rounded px-2 py-2' />  
         </div>
         <div className="flex flex-col gap-2">
           <label className="dark:text-slate-100 font-semibold" htmlFor="email">Your email</label>
-          <input type="text" id='email' placeholder='email' {...form.register('email')} className='w-full border-2 border-slate-500 rounded px-2 py-1' />
+          <input type="text" id='email' placeholder='email' {...form.register('email')} className='w-full border-2 border-slate-500 rounded px-2 py-2' />
         </div>
         <div className="flex flex-col gap-2">
           <label className="dark:text-slate-100 font-semibold" htmlFor="password">Your password</label>
@@ -88,6 +89,7 @@ const FormSignup = () => {
         </div>
         </div>
         <button type='submit' disabled={loading} className='mt-4 w-full bg-gradient-to-r text-white font-bold from-blue-500 via-cyan-500 to-green-500 py-1.5 flex justify-center shadow-md shadow-slate-900/40 dark:shadow-slate-400/40 rounded hover:opacity-80'>{loading?<Loader size="sm" />:'Sign Up'}</button>
+        <Oauth location="up" />
       </form>
       <ShowNotif error={error}  />
     </div>

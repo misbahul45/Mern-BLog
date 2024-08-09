@@ -1,4 +1,3 @@
-import React from 'react'
 import { AiOutlineMoon, AiOutlineSun } from 'react-icons/ai'
 
 interface Props{
@@ -18,4 +17,4 @@ const DarkMode = ({isdarkMode, onClick}:Props) => {
   )
 }
 
-export default React.memo(DarkMode)
+export default DarkMode

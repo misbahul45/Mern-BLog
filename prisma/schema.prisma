@@ -17,7 +17,8 @@ model User {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   username  String   @unique
   email     String   @unique
-  password  String
+  password  String?
+  avatar    String   @default("https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1722988800&semt=ais_hybrid")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
