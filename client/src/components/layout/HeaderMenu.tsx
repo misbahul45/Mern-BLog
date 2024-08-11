@@ -36,7 +36,7 @@ const HeaderMenu=({setShowNavbar}:HeaderMenuProps)=>{
                     </div>
                 </Link>
             }
-            <button onClick={()=>setShowNavbar(prev=>!prev)} className='lg:hidden block p-2.5 rounded-full shadow-md shadow-slate-800/60 dark:shadow-slate-400/60 border border-slate-800 dark:border-slate-400'>
+            <button onClick={()=>setShowNavbar(prev=>!prev)} className='lg:hidden block p-1.5 rounded-full shadow-md shadow-slate-800/60 dark:shadow-slate-400/60 border border-slate-800 dark:border-slate-400'>
                 <AiOutlineMenu className='text-xl dark:text-slate-100' />
             </button>
        </div> 

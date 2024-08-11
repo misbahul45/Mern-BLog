@@ -35,12 +35,21 @@ export default {
           '100%': {
             transform: 'scale(1)',
           }
+        },
+        'animate-progress': {
+          '0%': {
+            width: '0%',
+          },
+          '100%': {
+            width: '100%',
+          }
         }
       },
       animation: {
         'show-mobile-nav': 'show-mobile-nav 0.5s linear',
         'show-notif': 'show-notif 0.5s linear',
-        'show-profile-menu': 'show-profile-menu 0.5s linear'
+        'show-profile-menu': 'show-profile-menu 0.5s linear',
+        'animate-progress': 'animate-progress 1s linear'
       }
     }
   },
