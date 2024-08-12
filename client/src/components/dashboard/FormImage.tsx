@@ -1,6 +1,8 @@
 import React, { useEffect } from "react"
 import app from "../../firebase"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
+import { FaImage } from "react-icons/fa6"
+import Loader from "../ui/Loader"
 
 interface Props{
     avatar:string
@@ -9,6 +11,7 @@ interface Props{
 }
 const FormImage = ({avatar, imageUrl, setImageUrl }:Props) => {
     const imageRef=React.useRef<HTMLInputElement>(null)
+    const [error, setError]=React.useState<boolean | null>(null)
     const [imageFile, setImageFile]=React.useState<File | null>(null)
     const [animateProgress, setAnimateProgress]=React.useState(false)
 
@@ -33,13 +36,16 @@ const FormImage = ({avatar, imageUrl, setImageUrl }:Props) => {
                     }
                 },
                 (error)=>{
-                    console.log(error)
+                    if(error){
+                        setError(true)
+                    }
                 },
                 ()=>{
                     getDownloadURL(uploadTask.snapshot.ref).then(
                         (downloadUrl)=>{
-                            console.log('File available at', downloadUrl);
-                            setImageUrl(downloadUrl)
+                            if(downloadUrl){
+                                setImageUrl(downloadUrl)
+                            }
                         }
                     )
                 }
@@ -54,13 +60,28 @@ const FormImage = ({avatar, imageUrl, setImageUrl }:Props) => {
         }
     },[imageFile])
 
+    useEffect(()=>{
+        if(error){
+            setTimeout(()=>{
+                setError(false)    
+            },2500)
+        }
+    },[error])
 
   return (
     <>   
-        {animateProgress&&<div className=" animate-animate-progress absolute top-0 left-0 h-2 bg-blue-500" />}
-        <div onClick={()=>imageRef.current?.click()} className={`relative p-1.5 rounded-full bg-slate-700`}>
+        <div onClick={()=>imageRef.current?.click()} className={`relative p-1.5 rounded-full bg-slate-700 group`}>
+            <FaImage className="text-xl z-50 text-slate-400 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer hidden group-hover:block" />
             <img src={imageUrl || avatar} alt="user avatar" className='size-20 rounded-full object-cover z-20' />
         </div>
+        {animateProgress&&(
+            <Loader size="md" />
+        )}
+        {error&&(
+            <div className="px-4 py-2 rounded-xl bg-red-200">
+                <span className="text-sm font-semibold text-red-800">Cannot Upload Image (file muss be less than 4mb)</span>
+            </div>
+        )}
         <input type="file" accept="image/*" ref={imageRef} onChange={handleImageChange} className="hidden" />
     </>
   )

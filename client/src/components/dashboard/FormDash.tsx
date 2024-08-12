@@ -31,11 +31,11 @@ const FormDash = ({avatar}:Props) => {
   return (
     <form className='w-full max-w-sm mx-auto'>
         <div className="flex flex-col gap-2">
-          <label className="dark:text-slate-100 font-semibold" htmlFor="username">Your username</label>
+          <label className="dark:text-slate-100 font-semibold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="username">Your username</label>
           <input type="text" id='username' placeholder='username' {...form.register('username')} className='w-full border-2 border-slate-500 rounded px-2 py-2' />  
         </div>
         <div className="flex flex-col gap-2">
-          <label className="dark:text-slate-100 font-semibold" htmlFor="email">Your email</label>
+          <label className="dark:text-slate-100 font-semibold after:content-['*'] after:ml-0.5 after:text-red-500" htmlFor="email">Your email</label>
           <input type="text" id='email' placeholder='email' {...form.register('email')} className='w-full border-2 border-slate-500 rounded px-2 py-2' />
         </div>
         <div className="flex flex-col gap-2">
@@ -46,7 +46,7 @@ const FormDash = ({avatar}:Props) => {
         </div>
         </div>
         <div className="flex justify-between items-center mt-6">
-            <button type='button' className="dark:text-slate-100 font-semibold px-4 py-2 rounded border-2 border-red-600 hover:bg-red-600 transition-all duration-100">Delete Account</button>
+            <button type='button' className="dark:text-slate-100 font-semibold px-4 py-2 rounded border-2 border-red-600 hover:bg-red-600  hover:text-slate-100 transition-all duration-100">Delete Account</button>
             <button type='submit' disabled={loading} className='px-8 bg-gradient-to-r text-white font-bold from-blue-500 via-cyan-500 to-green-500 py-2 flex justify-center shadow-md shadow-slate-900/40 dark:shadow-slate-400/40 rounded hover:opacity-80'>{loading?<Loader size="sm" />:'Update'}</button>
         </div>
     </form>

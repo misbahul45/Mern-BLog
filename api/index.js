@@ -11,10 +11,11 @@ app.use(express.json())
 app.use("/api/users",userRouter)
 app.use("/api/auth",authRouter)
 
-
 app.listen(PORT,()=>{
     console.log("backend server is running on port",PORT)   
 })
+
+
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500

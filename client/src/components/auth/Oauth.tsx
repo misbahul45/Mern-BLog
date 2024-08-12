@@ -40,6 +40,7 @@ const Oauth = ({ location }: Props) => {
       console.error(error);
     }
   };
+  
 
   return (
     <button
