@@ -1,9 +1,9 @@
 const express=require("express")
+const verifyUser = require("../middleware/authVerify")
+const { updateUserController } = require("../controllers/user.controller")
 
 const router=express.Router()
 
-router.get('/',(req, res) => {
-    return res.json({ message:"success send" })
-})
+router.patch('/update/:userId', verifyUser, updateUserController)
 
 module.exports=router

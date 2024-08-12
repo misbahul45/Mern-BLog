@@ -1,11 +1,13 @@
 const express=require("express")
 const userRouter=require("./routes/user.route")
 const authRouter=require("./routes/auth.route")
+const cookieParser = require('cookie-parser');
 
 //configuration
 const app=express()
 const PORT=process.env.PORT
 app.use(express.json())
+app.use(cookieParser());
 
 //routes
 app.use("/api/users",userRouter)

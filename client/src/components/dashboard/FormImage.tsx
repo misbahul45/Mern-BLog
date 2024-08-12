@@ -72,7 +72,7 @@ const FormImage = ({avatar, imageUrl, setImageUrl }:Props) => {
     <>   
         <div onClick={()=>imageRef.current?.click()} className={`relative p-1.5 rounded-full bg-slate-700 group`}>
             <FaImage className="text-xl z-50 text-slate-400 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer hidden group-hover:block" />
-            <img src={imageUrl || avatar} alt="user avatar" className='size-20 rounded-full object-cover z-20' />
+            <img src={imageUrl || avatar} alt="user avatar" className='size-24 rounded-full object-cover z-20' />
         </div>
         {animateProgress&&(
             <Loader size="md" />

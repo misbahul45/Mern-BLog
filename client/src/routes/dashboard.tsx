@@ -23,7 +23,7 @@ function DashboardPage(){
         return <Navigate to='/sign-in' />
     }
     return (
-       <section className='w-full min-h-[calc(100vh-4rem)] flex md:flex-row flex-col gap-2'>
+       <section className='w-full min-h-[calc(100vh-4rem)] flex md:flex-row flex-col gap-2 pb-4'>
           <DashboardSidebar tab={tab} />
           {tab==='profile' && <DashboardProfile />}
        </section>

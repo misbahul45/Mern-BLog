@@ -45,9 +45,10 @@ const FormDash = ({avatar}:Props) => {
           <ShowPassword onClick={handleShowPassword} showPassword={showPassword} />
         </div>
         </div>
-        <div className="flex justify-between items-center mt-6">
+        <button type='submit' disabled={loading} className='my-6 w-full dark:text-white font-bold bg-transparent border-2 border-blue-600 hover:bg-gradient-to-tr hover:text-white from-blue-700 via-cyan-700 to-green-700 py-2 flex justify-center shadow-md shadow-slate-900/40 dark:shadow-slate-400/40 rounded hover:opacity-80 transition-all duration-100'>{loading?<Loader size="sm" />:'Update'}</button>
+        <div className="flex justify-between items-center">
             <button type='button' className="dark:text-slate-100 font-semibold px-4 py-2 rounded border-2 border-red-600 hover:bg-red-600  hover:text-slate-100 transition-all duration-100">Delete Account</button>
-            <button type='submit' disabled={loading} className='px-8 bg-gradient-to-r text-white font-bold from-blue-500 via-cyan-500 to-green-500 py-2 flex justify-center shadow-md shadow-slate-900/40 dark:shadow-slate-400/40 rounded hover:opacity-80'>{loading?<Loader size="sm" />:'Update'}</button>
+            <button type='button' className="dark:text-slate-100 font-semibold px-4 py-2 rounded border-2 border-red-600 hover:bg-red-600  hover:text-slate-100 transition-all duration-100">Sign Out</button>
         </div>
     </form>
   )
