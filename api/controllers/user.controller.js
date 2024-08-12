@@ -5,7 +5,8 @@ const errorHandler = require("../utils/error");
 const updateUserController=async(req, res, next)=>{
     const { userId }=req.params
     const { password:updatePassword, username, email, avatar }=req.body 
-    if(!username || !email){
+     
+    if(!username && !email){
         return next(errorHandler(400, "username and email are required"))
     }
     let hashedPassword=''
@@ -13,14 +14,20 @@ const updateUserController=async(req, res, next)=>{
         hashedPassword=await hashPassword(updatePassword)
     }
     try {       
+        const findUser=await db.user.findUnique({
+            where:{
+                id:userId
+            },
+        })
+        console.log(findUser.email, "", email)
         const updatedUser=await db.user.update({
             where:{
                 id:userId
             },
             data:{
             ...( updatePassword && { password:hashedPassword }),
-            username,
-            email,
+            ...(username!==findUser.username && { username }),
+            ...(email!==findUser.email && { email }),
             ...(avatar && { avatar })
             }
         })
