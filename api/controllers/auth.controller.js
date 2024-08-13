@@ -96,4 +96,10 @@ const authByGoogleController=async(req, res, next)=>{
 
 }
 
-module.exports={ signUpController, signInController, authByGoogleController }
+const signoutUserController=async(_, res)=>{
+    return res.cookie("token",'').json({
+        message:"User Successfully Sign Out"
+    })
+}
+
+module.exports={ signUpController, signInController, authByGoogleController, signoutUserController }

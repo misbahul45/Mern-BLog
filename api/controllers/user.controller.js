@@ -13,13 +13,14 @@ const updateUserController=async(req, res, next)=>{
     if(updatePassword){
         hashedPassword=await hashPassword(updatePassword)
     }
+
     try {       
         const findUser=await db.user.findUnique({
             where:{
                 id:userId
             },
         })
-        console.log(findUser.email, "", email)
+
         const updatedUser=await db.user.update({
             where:{
                 id:userId
@@ -38,5 +39,22 @@ const updateUserController=async(req, res, next)=>{
     }
 }
 
+const deleteUserController=async(req,res, next)=>{
+    const userId=req.userId
+    try {
+        const deleteUser=await db.user.delete({
+            where:{
+                id:userId
+            }
+        })
+        return res.cookie("token","").json({ succes:true, message:'Success to deleted user with name'+deleteUser })
+    } catch (error) {
+        console.log(error)
+        next(error)
+    }
+}
 
-module.exports={ updateUserController }
+
+
+
+module.exports={ updateUserController, deleteUserController }

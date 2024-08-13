@@ -2,20 +2,20 @@ import { createFileRoute, Navigate } from '@tanstack/react-router'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { z } from 'zod'
-import DashboardSidebar from '../components/dashboard/DashboardSidebar'
-import DashboardProfile from '../components/dashboard/DashboardProfile'
+import DashboardSidebar from '../components/dashboard/ProfileSidebar'
+import DashboardProfile from '../components/dashboard/ProfileContent'
 
 
 const TabSchema=z.object({
     tab:z.string().default('profile')
 })
 
-export const Route = createFileRoute('/dashboard')({
-  component:DashboardPage,
+export const Route = createFileRoute('/profile')({
+  component:profilePage,
   validateSearch:({ params })=>TabSchema.parse(params || {}),
 })
 
-function DashboardPage(){
+function profilePage(){
     const { currentUser }=useSelector((state:RootState)=>state.user)
     const { tab }=Route.useSearch()
 

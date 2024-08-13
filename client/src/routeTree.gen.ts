@@ -12,7 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProjectsImport } from './routes/projects'
-import { Route as DashboardImport } from './routes/dashboard'
+import { Route as ProfileImport } from './routes/profile'
+import { Route as NewStoryImport } from './routes/new-story'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthSignUpImport } from './routes/_auth/sign-up'
@@ -25,8 +26,13 @@ const ProjectsRoute = ProjectsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardRoute = DashboardImport.update({
-  path: '/dashboard',
+const ProfileRoute = ProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const NewStoryRoute = NewStoryImport.update({
+  path: '/new-story',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -68,11 +74,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
+    '/new-story': {
+      id: '/new-story'
+      path: '/new-story'
+      fullPath: '/new-story'
+      preLoaderRoute: typeof NewStoryImport
+      parentRoute: typeof rootRoute
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileImport
       parentRoute: typeof rootRoute
     }
     '/projects': {
@@ -104,7 +117,8 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AboutRoute,
-  DashboardRoute,
+  NewStoryRoute,
+  ProfileRoute,
   ProjectsRoute,
   AuthSignInRoute,
   AuthSignUpRoute,
@@ -120,7 +134,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/about",
-        "/dashboard",
+        "/new-story",
+        "/profile",
         "/projects",
         "/_auth/sign-in",
         "/_auth/sign-up"
@@ -132,8 +147,11 @@ export const routeTree = rootRoute.addChildren({
     "/about": {
       "filePath": "about.tsx"
     },
-    "/dashboard": {
-      "filePath": "dashboard.tsx"
+    "/new-story": {
+      "filePath": "new-story.tsx"
+    },
+    "/profile": {
+      "filePath": "profile.tsx"
     },
     "/projects": {
       "filePath": "projects.tsx"
