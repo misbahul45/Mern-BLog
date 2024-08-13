@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className='w-full flex flex-col gap-4 justify-center items-center py-4 bg-slate-100 dark:bg-slate-900'>
       <Logo />
-      <h1 className='text-slate-900 dark:text-slate-200'>Copyright &copy; {new Date().getFullYear()} <span className='font-semibold'>Misbahul&#39;s Blogs</span>, All Rights Reserved</h1>
+      <h1 className='text-slate-900 dark:text-slate-200 text-center'>Copyright &copy; {new Date().getFullYear()} <span className='font-semibold'>Misbahul&#39;s Blogs</span>, All Rights Reserved</h1>
       <div className="flex gap-4">
         {icons.map((icon, index) => (
           <Link

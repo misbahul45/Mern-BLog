@@ -30,7 +30,7 @@ const ProfileSidebar = ({tab}:Props) => {
             </div>
             <span className='px-3 h-full bg-slate-800 rounded'>User</span>
         </Link>
-        <button onClick={handleSignout} className='w-full flex gap-2 items-center py-2 pl-4 rounded-md hover:bg-slate-400 dark:hover:bg-slate-700 hover:text-slate-50'>
+        <button onClick={handleSignout} className='w-full flex gap-2 items-center py-2 pl-4 rounded-md hover:bg-slate-400 dark:hover:bg-slate-700 hover:text-slate-50 hover:translate-x-2 transition-all duration-100'>
           <FaArrowRight size={20} />
           <span>Sign Out</span>
         </button>
