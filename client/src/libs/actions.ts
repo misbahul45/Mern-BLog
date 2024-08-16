@@ -12,3 +12,15 @@ export const signOutAction=async()=>{
         return false
     }
 }
+
+export const creaePostAction=async(post:Partial<Post>)=>{
+        const res=await fetch('/api/posts', {
+            method:"POST",
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(post)
+        })
+        const data=await res.json()
+        return data
+}

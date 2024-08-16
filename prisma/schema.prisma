@@ -21,4 +21,18 @@ model User {
   avatar    String   @default("https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1722988800&semt=ais_hybrid")
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  posts     Post[]
+}
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  image     String?
+  title     String
+  slug      String   @unique
+  desc      String
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String   @db.ObjectId
+  category  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

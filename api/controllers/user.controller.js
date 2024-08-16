@@ -55,6 +55,27 @@ const deleteUserController=async(req,res, next)=>{
 }
 
 
+const getUserController=async(req, res, next)=>{
+    const userId=req.params.userId
+    try {
+        const user=await db.user.findUnique({
+            where:{
+                id:userId
+            },
+            select:{
+                id:true,
+                username:true,
+                email:true,
+                avatar:true
+            }
+        })
+        return res.json({ ...user })
+    } catch (error) {
+        next(error)
+    }
+}
 
 
-module.exports={ updateUserController, deleteUserController }
+
+
+module.exports={ updateUserController, deleteUserController, getUserController }

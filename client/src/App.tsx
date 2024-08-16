@@ -2,6 +2,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 // Create a new router instance
 const router = createRouter({
@@ -19,10 +20,12 @@ declare module '@tanstack/react-router' {
   }
 }
 
+export const queryClient = new QueryClient()
 const App = () => {
-  
   return (
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     )
 }
 
