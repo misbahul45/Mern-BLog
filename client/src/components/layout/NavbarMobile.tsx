@@ -38,9 +38,7 @@ const NavbarMobile=({showNavbar}:NavbarMobileProps)=>{
         navigate({
           to:'/',
           replace:true,
-          search: {
-            search: 'all',
-          }
+          
         })
       }
 

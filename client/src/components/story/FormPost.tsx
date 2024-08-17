@@ -5,6 +5,7 @@ import { RootState } from '../../redux/store.ts';
 import Loader from '../ui/Loader.tsx';
 import { useMutation } from 'react-query';
 import { queryClient } from '../../App.tsx';
+import { sleep } from '../../libs/utils.ts';
 
 interface Props {
   avatar: string;
@@ -42,6 +43,7 @@ const FormPost = ({ avatar, setAvatar }: Props) => {
         }),
       });
       const data = await res.json();
+      await sleep();
       return data;
     },
     {
@@ -54,7 +56,7 @@ const FormPost = ({ avatar, setAvatar }: Props) => {
         queryClient.invalidateQueries(['posts']);
        ;
       },
-      onError: (error) => {
+      onError: (_) => {
         setError({ message: 'Failed to create post', success: false });
       },
       onSettled: () => {
@@ -95,7 +97,7 @@ const FormPost = ({ avatar, setAvatar }: Props) => {
       >
         <option value="">Select a Category</option>
         <option value="Study">Study</option>
-        <option value="Programming">Programming</option>
+        <option value="Programing">Programing</option>
         <option value="Life Style">Life Style</option>
         <option value="Information">Information</option>
       </select>

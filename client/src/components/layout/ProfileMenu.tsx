@@ -43,19 +43,19 @@ const ProfileMenu = ({ avatar,username, email }:Props) => {
                 <h1 className="lg:text-lg text-md text-center font-bold dark:text-slate-400">{username}</h1>
                 <p className="text-sm font-semibold dark:text-slate-400">{email}</p>
                 <ul className="border-t-2 border-t-slate-600 dark:text-slate-400 w-full py-1">
-                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100">
+                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100 list-none">
                         <Link to="/profile" search={{ tab: 'profile' }} className="flex items-center gap-2 w-full h-full py-2 pl-2 text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-all duration-100">
                             <FaUser size={15} />
                             <span>Profile</span>
                         </Link>
                     </li>
-                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100">
+                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100 list-none">
                         <Link to="/new-story" className="flex items-center gap-2 w-full h-full py-2 pl-2 text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-all duration-100">
                             <FaPen size={15} />
                             <span>Story</span>
                         </Link>
                     </li>
-                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100">
+                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100 list-none">
                         <button onClick={handleSignout} className="flex items-center gap-2 py-2 pl-2 text-left w-full h-full text-sm font-semibold hover:text-slate-900 hover:translate-x-2 dark:hover:text-white transition-all duration-100">
                             <VscSignOut size={15} />
                             <span>Sign Out</span>

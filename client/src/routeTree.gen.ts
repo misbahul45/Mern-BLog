@@ -15,7 +15,10 @@ import { Route as ProjectsImport } from './routes/projects'
 import { Route as ProfileImport } from './routes/profile'
 import { Route as NewStoryImport } from './routes/new-story'
 import { Route as AboutImport } from './routes/about'
+import { Route as SearchImport } from './routes/$search'
 import { Route as IndexImport } from './routes/index'
+import { Route as UserIdImport } from './routes/user.$id'
+import { Route as PostSlugImport } from './routes/post.$slug'
 import { Route as AuthSignUpImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInImport } from './routes/_auth/sign-in'
 
@@ -41,8 +44,23 @@ const AboutRoute = AboutImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SearchRoute = SearchImport.update({
+  path: '/$search',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const UserIdRoute = UserIdImport.update({
+  path: '/user/$id',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PostSlugRoute = PostSlugImport.update({
+  path: '/post/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -65,6 +83,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/$search': {
+      id: '/$search'
+      path: '/$search'
+      fullPath: '/$search'
+      preLoaderRoute: typeof SearchImport
       parentRoute: typeof rootRoute
     }
     '/about': {
@@ -109,6 +134,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignUpImport
       parentRoute: typeof rootRoute
     }
+    '/post/$slug': {
+      id: '/post/$slug'
+      path: '/post/$slug'
+      fullPath: '/post/$slug'
+      preLoaderRoute: typeof PostSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/user/$id': {
+      id: '/user/$id'
+      path: '/user/$id'
+      fullPath: '/user/$id'
+      preLoaderRoute: typeof UserIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -116,12 +155,15 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  SearchRoute,
   AboutRoute,
   NewStoryRoute,
   ProfileRoute,
   ProjectsRoute,
   AuthSignInRoute,
   AuthSignUpRoute,
+  PostSlugRoute,
+  UserIdRoute,
 })
 
 /* prettier-ignore-end */
@@ -133,16 +175,22 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/$search",
         "/about",
         "/new-story",
         "/profile",
         "/projects",
         "/_auth/sign-in",
-        "/_auth/sign-up"
+        "/_auth/sign-up",
+        "/post/$slug",
+        "/user/$id"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/$search": {
+      "filePath": "$search.tsx"
     },
     "/about": {
       "filePath": "about.tsx"
@@ -161,6 +209,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_auth/sign-up": {
       "filePath": "_auth/sign-up.tsx"
+    },
+    "/post/$slug": {
+      "filePath": "post.$slug.tsx"
+    },
+    "/user/$id": {
+      "filePath": "user.$id.tsx"
     }
   }
 }
