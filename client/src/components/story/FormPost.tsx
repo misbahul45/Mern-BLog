@@ -104,7 +104,7 @@ const FormPost = ({ avatar, setAvatar }: Props) => {
       <TextEditor content={description} setContent={setDescription} />
       <button
         type="submit"
-        className="w-full py-2 border-2 border-slate-300 mb-6 mt-11 hover:bg-slate-300 flex justify-center items-center dark:border-slate-700 dark:hover:bg-slate-700 rounded"
+        className="w-full py-2 border-2 border-slate-300 mb-6 md:mt-11 sm:mt-16 mt-24 hover:bg-slate-300 flex justify-center items-center dark:border-slate-700 dark:hover:bg-slate-700 rounded"
       >
         {loading ? <>
           <Loader size="md" />

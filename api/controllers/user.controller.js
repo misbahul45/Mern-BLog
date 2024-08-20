@@ -54,7 +54,6 @@ const deleteUserController=async(req,res, next)=>{
     }
 }
 
-
 const getUserController=async(req, res, next)=>{
     const userId=req.params.userId
     try {

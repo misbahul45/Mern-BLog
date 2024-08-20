@@ -25,11 +25,8 @@ const ProfileMenu = ({ avatar,username, email }:Props) => {
         if(isTrue){
           dispatch(signoutUser())
           navigate({
-            to:'/',
+            to:'/sign-in',
             replace:true,
-            search: {
-              search: 'all',
-            }
           })
         }
       }
