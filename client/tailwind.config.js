@@ -9,6 +9,10 @@ export default {
   darkMode: 'class',
   theme: {
     extend:{
+      backgroundImage:{
+        'texture-white':"url('/public/white.jpg')",
+        'texture-black':"url('/public/black.jpg')",
+      },
       keyframes: {
         'show-mobile-nav': {
           "0%": {
@@ -43,13 +47,24 @@ export default {
           '100%': {
             width: '100%',
           }
+        },
+        background: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center',
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center',
+          },
         }
       },
       animation: {
         'show-mobile-nav': 'show-mobile-nav 0.5s linear',
         'show-notif': 'show-notif 0.5s linear',
         'show-profile-menu': 'show-profile-menu 0.5s linear',
-        'animate-progress': 'animate-progress 1s linear'
+        'animate-progress': 'animate-progress 1s linear',
+        'background': 'background 5s ease infinite',
       }
     }
   },

@@ -5,13 +5,15 @@ import { signOutAction } from "../../libs/actions"
 import { signoutUser } from "../../redux/user/userSlice"
 import { FaPen, FaUser } from "react-icons/fa6"
 import { VscSignOut } from "react-icons/vsc";
+import { FiSettings } from "react-icons/fi"
 
 interface Props{
     avatar:string,
     username:string
     email:string
+    authorId?:string
 }
-const ProfileMenu = ({ avatar,username, email }:Props) => {
+const ProfileMenu = ({ avatar, username, email, authorId }:Props) => {
     const [showMenu, setShowMenu]=React.useState(false)
     const dispatch=useDispatch()
     const navigate=useNavigate()
@@ -47,7 +49,13 @@ const ProfileMenu = ({ avatar,username, email }:Props) => {
                         </Link>
                     </li>
                     <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100 list-none">
-                        <Link to="/new-story" className="flex items-center gap-2 w-full h-full py-2 pl-2 text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-all duration-100">
+                        <Link to="/dashboard" search={{ authorId: authorId }} className="flex items-center gap-2 w-full h-full py-2 pl-2 text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-all duration-100">
+                            <FiSettings size={15} />
+                            <span>Dashboard</span>
+                        </Link>
+                    </li>
+                    <li onClick={toggleShowMenu} className="hover:bg-slate-400 hover:dark:bg-slate-600 rounded-md transition-all duration-100 list-none">
+                        <Link to="/new-story/$slug" params={{ slug: 'new' }} className="flex items-center gap-2 w-full h-full py-2 pl-2 text-sm font-semibold hover:text-slate-900 dark:hover:text-white transition-all duration-100">
                             <FaPen size={15} />
                             <span>Story</span>
                         </Link>

@@ -24,7 +24,7 @@ function UserPage(){
     <section className='w-full min-h-[calc(100vh-4rem)] py-8'>
       <h1 className='lg:text-5xl md:text-4xl text-2xl text-center text-slate-100'>{user?.username}</h1>
       <div className="flex justify-center mt-8">
-        <img src={user?.avatar} alt='user avatar' className='lg:size-24 md:size-16 size-12 object-cover rounded-full' />
+        <img src={user?.avatar && user.avatar} alt='user avatar' className='lg:size-24 md:size-16 size-12 object-cover rounded-full' />
       </div>
       <div className='flex flex-col gap-2 w-full max-w-2xl py-4 mx-auto'>
         {posts?.map((post) => (

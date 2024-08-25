@@ -68,9 +68,9 @@ const FormImage = ({ imgUrl, setImgUrl }:Props) => {
                 <span className="text-sm font-semibold text-red-800">Cannot Upload Image (file muss be less than 4mb)</span>
             </div>
         )}
-      <div onClick={()=>imgRef.current?.click()} className={`w-full max-w-xl h-72 border-4 border-slate-400 dark:border-slate-600 rounded-xl ${!imgUrl&&"p-14 border-dotted"} cursor-pointer hover:scale-105 transition-all duration-100 group`}>
+      <div onClick={()=>imgRef.current?.click()} className={`w-full max-w-xl h-72 border-4 border-slate-400 dark:border-slate-600 rounded-lg ${!imgUrl&&"p-14 border-dotted"} cursor-pointer hover:scale-105 transition-all duration-100 group`}>
           {imgUrl?
-            <img src={imgUrl} alt='image avatar' loading='lazy' className='w-full h-full object-cover rounded-xl' />
+            <img src={imgUrl} alt='image avatar' loading='lazy' className='w-full h-full object-cover rounded-lg' />
             :
             <>
               <FaImage className='w-full h-full dark:text-slate-400 group-hover:dark:text-slate-200 group-hover:text-slate-900 rounded-xl' />

@@ -1,4 +1,3 @@
-import { sleep } from '../../libs/utils';
 import Loader from '../ui/Loader';
 import moment from 'moment';
 import { useQuery } from 'react-query';
@@ -46,10 +45,10 @@ const User = ({ id, updatedAt }: Props) => {
           onMouseLeave={() => setHovered(false)}
           className='flex gap-2'>
             <img src={user?.avatar || 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1722988800&semt=ais_hybrid'} alt={user?.username} className='size-8 rounded-full object-cover' />
-            <h1 className='lg:text-md text-sm font-bold text-slate-600 dark:text-slate-100'>{user?.username}</h1>
+            <h1 className='lg:text-md text-sm font-bold text-slate-600 dark:text-slate-100'>{user?.username} {user.email.includes("misbahul") && "👑"}</h1>
           </div>
         )}
-        <span className='text-xs text-slate-500 dark:text-slate-600'>
+        <span className='text-xs text-slate-600 dark:text-slate-400'>
           {moment(updatedAt).fromNow()}
         </span>
       </Link>

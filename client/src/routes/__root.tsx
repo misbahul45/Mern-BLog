@@ -11,7 +11,7 @@ export const Route =createRootRouteWithContext<MyRouterContext>()({
 function RootComponent(){
   return <>
           <Header />
-          <main className='dark:bg-slate-800'>
+          <main className='bg-gradient-to-r from-white/40 via-slate-500/10 to-white/40 dark:from-slate-800/95 dark:via-slate-800/90 dark:to-slate-800/95 animate-background'>
             <Outlet />
           </main>
           <Footer />

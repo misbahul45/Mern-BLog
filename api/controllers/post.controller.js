@@ -27,7 +27,9 @@ const getAllPostsController = async (req, res, next) => {
     try {
       const allPosts = await db.post.findMany({
         orderBy: {
-          updatedAt: "desc",
+          upvotes:{
+            _count:'desc'
+          },
         },
         where: {
           authorId,
@@ -62,5 +64,54 @@ const getPostController=async(req, res, next)=>{
         next(errorHandler(error))
     }
 }
+const deletePostController = async (req, res, next) => {
+  const postId = req.params.postId;
+  const userId = req.userId;
   
-module.exports={ createPostController, getAllPostsController, getPostController }
+  try {
+    const post = await db.post.findUnique({
+      where: { id: postId }
+    });
+
+    if (!post) {
+      return next(errorHandler('Post not found', 404));
+    }
+
+    if (post.authorId !== userId) {
+      return next(errorHandler('You cannot delete this post', 403));
+    }
+
+    await db.post.delete({
+      where: { id: postId }
+    });
+
+    return res.json({ success: true, message: 'Post deleted successfully' });
+  } catch (error) {
+    next(error);
+
+  }
+};
+
+const getCommentsByUserPosts = async (req, res, next) => {
+  const userId=req.userId
+  try {
+    const comments = await db.comment.findMany({
+      where: {
+        post: {
+          authorId: userId
+        }
+      },
+      include: {
+        post: true,
+        user: true  
+      }
+    });
+    return res.json(comments || []);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+  
+module.exports={ createPostController, getAllPostsController, getPostController, deletePostController, getCommentsByUserPosts }

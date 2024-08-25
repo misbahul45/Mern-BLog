@@ -6,7 +6,7 @@ interface Props extends Post{}
 
 const Post = ({ title, desc, category, authorId, slug, image, updatedAt }:Props) => {
   return (
-    <div className='w-full py-1 px-2 rounded-lg relative'>
+    <div className='w-full py-1 px-2 rounded-lg relative hover:bg-slate-200 dark:hover:bg-slate-700 transition-all duration-100'>
       <User id={authorId} updatedAt={updatedAt} />
       <Link to='/post/$slug' params={{ slug }} className='flex mt-1'>
         <div className='flex-1 flex flex-col gap-2'>

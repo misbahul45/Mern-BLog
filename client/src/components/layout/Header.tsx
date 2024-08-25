@@ -17,7 +17,7 @@ const Header = () => {
     },[])
   return (
     <>
-        <header className='bg-white/20 dark:bg-slate-800 w-full h-16 flex items-center justify-between lg:px-16 md:px-12 sm:px-10 px-6 sticky top-0 left-0 backdrop-blur-md z-50'>
+        <header className='bg-white/50 dark:bg-slate-800/90 w-full h-16 flex items-center justify-between lg:px-16 md:px-12 sm:px-10 px-6 sticky top-0 left-0 backdrop-blur-md z-50'>
             <Logo />
             <Navbar />
             <HeaderMenu setShowNavbar={setShowNavbar} />

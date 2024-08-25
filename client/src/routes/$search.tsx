@@ -46,7 +46,7 @@ function SearchPage() {
     <section className='flex flex-col items-center min-h-[calc(100vh-4rem)] lg:px-0 px-2 overflow-hidden'>
       <HeaderCategory setAllPosts={setAllPosts} />
       <SearchForm searchItem={searchTitle} setSearchItem={setSearchTitle} />
-      <div className='flex flex-col gap-2 w-full max-w-2xl py-4'>
+      <div className='flex flex-col gap-2 w-full max-w-3xl py-4'>
         {allPosts?.map((post) => (
           <Post key={post.id} {...post} />
         ))}
@@ -57,7 +57,7 @@ function SearchPage() {
       </div>
       {!isLoading && posts && allPosts.length % 5 === 0 && allPosts.length > 0 && (
         <button onClick={() => setPage(page + 1)} className='bg-blue-700 text-slate-100 px-4 py-2 rounded-md my-4 hover:bg-blue-800 active:bg-red-700'>
-          {isLoading ? <Loader size='md' /> : 'Load More......'}
+          {isLoading ? <Loader size='md' /> : 'Load More'}
         </button>
       )}
     </section>

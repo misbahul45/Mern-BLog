@@ -75,6 +75,63 @@ const getUserController=async(req, res, next)=>{
 }
 
 
+const uproveUserController=async(req, res, next)=>{
+    const userId=req.userId
+    const postId=req.body.postId
+    try {
+        const isUpprove=await db.upprove.findUnique({
+            where:{
+                postId_userId:{
+                    postId,
+                    userId
+                }
+            }
+        })
+        if(isUpprove){
+            await db.upprove.delete({
+                where:{
+                    postId_userId:{
+                        postId,
+                        userId
+                    }
+                }
+            })
+            return res.json({ success:true, message:'Success to delete upprove' })
+        }
+
+        await db.upprove.create({
+            data:{
+                postId,
+                userId
+            }
+        })
+        return res.json({ success:true, message:'Success to upprove' })
+    } catch (error) {
+        next(error)
+    }
+}
+
+const getUpprovesController=async(req, res, next)=>{
+     const userId=req.userId
+     const postId=req.params.postId
+    try{
+        const isUpprove=await db.upprove.findUnique({
+            where:{
+                postId_userId:{
+                    postId,
+                    userId
+                }
+            }
+        })
+
+        if(isUpprove){
+            return res.json({ success:true, isUpprove:true })
+        }
+        return res.status(401).json({ success:false, isUpprove:false })
+    }catch(error){
+        next(error)
+    }
+}
 
 
-module.exports={ updateUserController, deleteUserController, getUserController }
+module.exports={ updateUserController, deleteUserController, getUserController, uproveUserController, getUpprovesController }

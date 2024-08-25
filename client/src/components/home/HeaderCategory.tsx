@@ -11,6 +11,7 @@ interface Props{
 const HeaderCategory = ({setAllPosts}:Props) => {
     const pathName=useLocation().pathname
     const navigate=useNavigate()
+    
     const gosearch=(searchItem:string)=>{
         searchItem=searchItem.toLowerCase().replace(' ', '-')
         if(searchItem==='all'){
@@ -20,9 +21,9 @@ const HeaderCategory = ({setAllPosts}:Props) => {
         }else{
           navigate({
             to:`/$search`,
-              params:{
-                  search:searchItem
-              }
+            params:{
+                search:searchItem
+            }
           })
         } 
         setAllPosts([])

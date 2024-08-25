@@ -2,7 +2,7 @@ import { createFileRoute, Navigate } from '@tanstack/react-router'
 import { useSelector } from 'react-redux'
 import { RootState } from '../redux/store'
 import { z } from 'zod'
-import ProfileSidebar from '../components/profile/ProfileSidebar'
+import Sidebar from '../components/ui/ProfileSidebar'
 import ProfileContent from '../components/profile/ProfileContent'
 
 const TabSchema=z.object({
@@ -23,7 +23,7 @@ function profilePage(){
     }
     return (
        <section className='w-full min-h-[calc(100vh-4rem)] flex md:flex-row flex-col gap-2 pb-4'>
-          <ProfileSidebar tab={tab} />
+          <Sidebar tab={tab} authorId={currentUser.id} />
           {tab==='profile' && <ProfileContent />}
        </section>
     )

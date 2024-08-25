@@ -26,7 +26,7 @@ const HeaderMenu=({setShowNavbar}:HeaderMenuProps)=>{
        <div className='flex gap-4 items-center justify-center'>
             <DarkMode isdarkMode={isdarkMode} onClick={handleDarkMode} />
             {currentUser?
-                <ProfileMenu username={currentUser.username} email={currentUser.email} avatar={currentUser.avatar} />
+                <ProfileMenu authorId={currentUser.id} username={currentUser.username} email={currentUser.email} avatar={currentUser.avatar} />
                 :
                 <Link to='/sign-in'>
                     <div className="h-[2.4rem] hidden lg:block w-full rounded bg-gradient-to-r from-blue-500 via-cyan-500 to-green-500 p-[0.2rem] shadow-md shadow-slate-900/40 dark:shadow-slate-400/40">

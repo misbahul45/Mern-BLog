@@ -13,12 +13,13 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProjectsImport } from './routes/projects'
 import { Route as ProfileImport } from './routes/profile'
-import { Route as NewStoryImport } from './routes/new-story'
+import { Route as DashboardImport } from './routes/dashboard'
 import { Route as AboutImport } from './routes/about'
 import { Route as SearchImport } from './routes/$search'
 import { Route as IndexImport } from './routes/index'
 import { Route as UserIdImport } from './routes/user.$id'
 import { Route as PostSlugImport } from './routes/post.$slug'
+import { Route as NewStorySlugImport } from './routes/new-story.$slug'
 import { Route as AuthSignUpImport } from './routes/_auth/sign-up'
 import { Route as AuthSignInImport } from './routes/_auth/sign-in'
 
@@ -34,8 +35,8 @@ const ProfileRoute = ProfileImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const NewStoryRoute = NewStoryImport.update({
-  path: '/new-story',
+const DashboardRoute = DashboardImport.update({
+  path: '/dashboard',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -61,6 +62,11 @@ const UserIdRoute = UserIdImport.update({
 
 const PostSlugRoute = PostSlugImport.update({
   path: '/post/$slug',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const NewStorySlugRoute = NewStorySlugImport.update({
+  path: '/new-story/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -99,11 +105,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/new-story': {
-      id: '/new-story'
-      path: '/new-story'
-      fullPath: '/new-story'
-      preLoaderRoute: typeof NewStoryImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
     }
     '/profile': {
@@ -134,6 +140,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignUpImport
       parentRoute: typeof rootRoute
     }
+    '/new-story/$slug': {
+      id: '/new-story/$slug'
+      path: '/new-story/$slug'
+      fullPath: '/new-story/$slug'
+      preLoaderRoute: typeof NewStorySlugImport
+      parentRoute: typeof rootRoute
+    }
     '/post/$slug': {
       id: '/post/$slug'
       path: '/post/$slug'
@@ -157,11 +170,12 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   SearchRoute,
   AboutRoute,
-  NewStoryRoute,
+  DashboardRoute,
   ProfileRoute,
   ProjectsRoute,
   AuthSignInRoute,
   AuthSignUpRoute,
+  NewStorySlugRoute,
   PostSlugRoute,
   UserIdRoute,
 })
@@ -177,11 +191,12 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/$search",
         "/about",
-        "/new-story",
+        "/dashboard",
         "/profile",
         "/projects",
         "/_auth/sign-in",
         "/_auth/sign-up",
+        "/new-story/$slug",
         "/post/$slug",
         "/user/$id"
       ]
@@ -195,8 +210,8 @@ export const routeTree = rootRoute.addChildren({
     "/about": {
       "filePath": "about.tsx"
     },
-    "/new-story": {
-      "filePath": "new-story.tsx"
+    "/dashboard": {
+      "filePath": "dashboard.tsx"
     },
     "/profile": {
       "filePath": "profile.tsx"
@@ -209,6 +224,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_auth/sign-up": {
       "filePath": "_auth/sign-up.tsx"
+    },
+    "/new-story/$slug": {
+      "filePath": "new-story.$slug.tsx"
     },
     "/post/$slug": {
       "filePath": "post.$slug.tsx"

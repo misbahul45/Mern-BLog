@@ -25,7 +25,7 @@ const icons=[
 
 const Footer = () => {
   return (
-    <footer className='w-full flex flex-col gap-4 justify-center items-center py-4 bg-slate-100 dark:bg-slate-900'>
+    <footer className='w-full flex flex-col gap-4 justify-center items-center py-4 bg-slate-100 dark:bg-slate-800/95'>
       <Logo />
       <h1 className='text-slate-900 dark:text-slate-200 text-center'>Copyright &copy; {new Date().getFullYear()} <span className='font-semibold'>Misbahul&#39;s Blogs</span>, All Rights Reserved</h1>
       <div className="flex gap-4">
