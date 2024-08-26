@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   p {
-    @apply lg:text-[15px] text-[10px] tracking-wider;
+    @apply lg:text-[15px] text-[12px] tracking-wider;
   }
   h1 {
     @apply lg:text-2xl text-lg font-semibold;

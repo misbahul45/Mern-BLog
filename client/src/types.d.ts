@@ -17,3 +17,18 @@ interface Post{
     image:string
     updatedAt:string
 }
+
+interface Comment{
+    id:string
+    postId:string
+    authorId:string
+    message:string
+    likes:number
+    updatedAt:string
+}
+
+interface Like{
+    id:string
+    commentId:string
+    authorId:string
+}

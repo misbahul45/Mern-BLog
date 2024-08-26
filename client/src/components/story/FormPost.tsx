@@ -13,7 +13,7 @@ interface Props {
   descriptionStory?: string;
   titleStory?: string;
   categoryStory?: string;
-
+  postId?: string;
 }
 
 interface Error {
@@ -21,7 +21,7 @@ interface Error {
   success: boolean;
 }
 
-const FormPost = ({ avatar, setAvatar, titleStory, descriptionStory , categoryStory }: Props) => {
+const FormPost = ({ avatar, setAvatar, titleStory, descriptionStory , categoryStory, postId }: Props) => {
   const [description, setDescription] = React.useState<string>(descriptionStory || '');
   const [category, setCategory] = React.useState<string>(categoryStory || '');
   const [title, setTitle] = React.useState<string>(titleStory || '');
@@ -31,10 +31,34 @@ const FormPost = ({ avatar, setAvatar, titleStory, descriptionStory , categorySt
   const [error, setError] = React.useState<Error | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
+  
   const mutation = useMutation(
     async () => {
-      const res = await fetch('/api/posts', {
-        method: 'POST',
+      if(!title && !description && !category && !avatar){
+        setError({ message: 'All fields are required', success: false });
+        return Promise.reject(new Error('All fields are required'));
+      }
+      if(!categoryStory && !titleStory && !descriptionStory){
+        const res = await fetch('/api/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            authorId: currentUser.id,
+            title,
+            category,
+            desc: description,
+            image: avatar,
+          }),
+        });
+        const data = await res.json();
+        await sleep();
+        return data;
+      }
+      //update
+      const res = await fetch(`/api/posts/${postId}`, {
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -83,7 +107,7 @@ const FormPost = ({ avatar, setAvatar, titleStory, descriptionStory , categorySt
             error.success ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-900'
           }`}
         >
-          <p>{error.message}</p>
+          <p>{error.message }</p>
         </div>
       )}
       <input
@@ -112,8 +136,8 @@ const FormPost = ({ avatar, setAvatar, titleStory, descriptionStory , categorySt
       >
         {loading ? <>
           <Loader size="md" />
-          <p className="ml-2">Uploading...</p>
-        </> : 'Upload Post Story'}
+          <p className="ml-2">{categoryStory?"Updating...":"Uploading..."}</p>
+        </> : (categoryStory ? 'Update Post Story':'Upload Post Story')}
       </button>
     </form>
   );

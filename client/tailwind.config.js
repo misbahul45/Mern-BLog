@@ -14,6 +14,15 @@ export default {
         'texture-black':"url('/public/black.jpg')",
       },
       keyframes: {
+        'show-message':{
+          "0%": {
+            transform: "translateY(-20%)",   
+          },
+          "100%": {
+            transform: "translateY(0)",
+
+          }
+        },
         'show-mobile-nav': {
           "0%": {
             transform: "translateY(-100%)",   
@@ -60,6 +69,7 @@ export default {
         }
       },
       animation: {
+        'show-message': 'show-message 0.2s linear',
         'show-mobile-nav': 'show-mobile-nav 0.5s linear',
         'show-notif': 'show-notif 0.5s linear',
         'show-profile-menu': 'show-profile-menu 0.5s linear',

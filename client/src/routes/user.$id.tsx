@@ -22,7 +22,7 @@ function UserPage(){
 
   return (
     <section className='w-full min-h-[calc(100vh-4rem)] py-8'>
-      <h1 className='lg:text-5xl md:text-4xl text-2xl text-center text-slate-100'>{user?.username}</h1>
+      <h1 className='lg:text-5xl md:text-4xl text-2xl text-center dark:text-slate-100 font-semibold'>{user?.username}</h1>
       <div className="flex justify-center mt-8">
         <img src={user?.avatar && user.avatar} alt='user avatar' className='lg:size-24 md:size-16 size-12 object-cover rounded-full' />
       </div>

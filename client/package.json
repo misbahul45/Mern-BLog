@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.7",
     "@tanstack/react-router": "^1.46.4",
+    "emoji-picker-react": "^4.11.1",
     "firebase": "^10.12.5",
     "html-react-parser": "^5.1.12",
     "moment": "^2.30.1",

@@ -1,21 +1,23 @@
 import { createFileRoute } from '@tanstack/react-router'
 import parse from "html-react-parser";
 import User from '../components/post/User';
-import Comment from '../components/post/Comment';
+import Comments from '../components/post/Comments';
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 export const Route = createFileRoute('/post/$slug')({
   component:PostPage,
   loader: async ({ params }) => {
     const { slug } = params
     const post = await fetch(`/api/posts/${slug}`).then(res => res.json())
-    
     return post as Post
   }
 })
 
 
 function PostPage() {
+  const currentUser  = useSelector((state:RootState) => state.user.currentUser)
   const post:Post=Route.useLoaderData()
   const commentRef=React.useRef<null | HTMLDivElement>(null)
   const goToComments=()=>{
@@ -33,7 +35,7 @@ function PostPage() {
       <div className='my-4 dark:text-slate-200'>
         {parse(post?.desc)}
       </div>
-      <Comment ref={commentRef} />
+      <Comments ref={commentRef} postId={post?.id} authorId={currentUser?.id} />
     </section>
   )
 }

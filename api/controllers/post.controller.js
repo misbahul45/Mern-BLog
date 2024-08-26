@@ -103,15 +103,48 @@ const getCommentsByUserPosts = async (req, res, next) => {
       },
       include: {
         post: true,
-        user: true  
       }
     });
     return res.json(comments || []);
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };
 
 
+const updatePostController=async(req, res, next)=>{
+    const postId=req.params.postId
+    const userId=req.userId
+
+    try {
+      const post=await db.post.findUnique({
+        where:{
+            id:postId
+        }
+      })
+
+      if(!post){
+        return next(errorHandler('Post not found', 404))
+      }
+
+      if(post.authorId!==userId){
+        return next(errorHandler('You cannot update this post', 403))
+      }
+
+      const updatedPost=await db.post.update({
+        where:{
+            id:postId
+        },
+        data:{
+            ...req.body
+        }
+      })
+      return res.json({ success: true, message: 'Post updated successfully', data: updatedPost })
+    } catch (error) {
+      next (error)
+    }
+}
+
   
-module.exports={ createPostController, getAllPostsController, getPostController, deletePostController, getCommentsByUserPosts }
+module.exports={ createPostController, getAllPostsController, getPostController, deletePostController, getCommentsByUserPosts, updatePostController }
