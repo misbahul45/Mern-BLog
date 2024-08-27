@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { useMutation, useQueryClient } from "react-query"
 
 interface Props{
@@ -46,7 +46,7 @@ const Table = ({data, heades}:Props) => {
                     <span className="lg:text-2xl md:text-lg text-md font-semibold dark:text-slate-100">{index+1}</span>
                 </td>
                 <td className="lg:p-4 p-2">
-                    <h1 className="lg:text-xl md:text-lg text-xs font-semibold dark:text-slate-100">{post.title}</h1>
+                    <Link to="/post/$slug" params={{ slug:post.slug }} className="lg:text-xl md:text-lg text-xs font-semibold dark:text-slate-100 hover:text-blue-500 dark:hover:text-blue-500 hover:border-b-2 hover:border-b-blue-800">{post.title}</Link>
                 </td>
                 <td className="lg:p-4 p-2">
                     <img src={post.image} alt={post.title} loading="lazy" className="lg:w-32 lg:h-24 w-16 h-12 bg-cover" />
