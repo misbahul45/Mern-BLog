@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "server": "console-ninja node --env-file .env --watch ./index.js"
+    "server": "console-ninja node --env-file .env --watch index.js"
   },
   "keywords": [],
   "author": "",
