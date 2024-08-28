@@ -38,20 +38,30 @@ const getAllComentsController=async(req, res, next)=>{
     }
 }
 
-const deleteComentController=async(req, res, next)=>{
-    const { commentId }=req.params
+const deleteComentController = async (req, res, next) => {
+    const { commentId } = req.params;
     try {
-        await db.comment.delete({
-            where:{
-                id:commentId
+        // Mengupdate child comments untuk menghapus referensi parent
+        await db.comment.updateMany({
+            where: {
+                parentId: commentId
+            },
+            data: {
+                parentId: null
             }
-        })
-        return res.json({ success:true })
+        });
+
+        // Hapus parent comment
+        await db.comment.delete({
+            where: {
+                id: commentId
+            }
+        });
+
+        return res.json({ success: true });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
-
-
+};
 
 module.exports={ createCommentController, getAllComentsController, deleteComentController, }

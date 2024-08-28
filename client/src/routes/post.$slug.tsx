@@ -36,6 +36,7 @@ function PostPage() {
         {parse(post?.desc)}
       </div>
       <Comments ref={commentRef} postId={post?.id} authorId={currentUser?.id} />
+      
     </section>
   )
 }
