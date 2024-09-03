@@ -2,7 +2,7 @@ untuk menjalakan pogram ini
 1.git clone https://github.com/misbahul45/Mern-BLog.git
 2 cd Mern-Blog
 3.masuk terminal
-4.npm i tuggu sampai selesai
+4.npm i "tuggu sampai selesai"
 5.cd api
 6.npm run server
 7.buat terminal baru
