@@ -9,6 +9,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend:{
+      gridTemplateColumns:{
+        'auto-fill': 'repeat(auto-fill, minmax(450px, 1fr))',
+      },
       backgroundImage:{
         'texture-white':"url('/public/white.jpg')",
         'texture-black':"url('/public/black.jpg')",

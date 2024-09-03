@@ -6,6 +6,8 @@ export const Route = createFileRoute('/about')({
 
 function AboutPage(){  
   return(
-    <section className='min-h-[calc(100vh-4rem)]'></section>
+    <section className='min-h-[calc(100vh-4rem)]'>
+      <iframe src="https://misbahul-cv.vercel.app/" className='w-full min-h-[calc(100vh-4rem)]'></iframe>
+    </section>
   )
 }
